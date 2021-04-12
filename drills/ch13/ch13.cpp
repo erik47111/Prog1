@@ -8,41 +8,35 @@
 int main()
 {
 
-	//---------------------1---------------------
-	int ablak_x= 800;
-	int ablak_y = 1000;
+//1.feladat
+Simple_window win{Point{100,100},800, 1000, "Simple_window"};
+Vector_ref<Rectangle> vr;
+    int meret = 100; // négyzet mérete
 
-	Simple_window win{Point{100,100},ablak_x, ablak_y, "Simple_window"};
-	//---------------------1---------------------
-
-
-
-	//---------------------2---------------------
-	Lines grid;
-    int grid_max = 800;
-    int grid_size = 100;
-    for (int i = grid_size; i<=grid_max; i+=grid_size) {
-        grid.add(Point(i,0),Point(i,grid_max));
-        grid.add(Point(0,i),Point(grid_max,i));
-    }
-    win.attach(grid);
-    //---------------------2---------------------
-
-
-
-    //---------------------3---------------------
-    Vector_ref<Rectangle> vr;
-    for (int i = 0; i < 8; ++i)
+    for(int sor = 0; sor < 8; ++sor)
     {
-    	vr.push_back(new Rectangle(Point{i*grid_size, i*grid_size}, grid_size, grid_size));
-    	vr[vr.size()-1].set_fill_color(Color::red);
-    	win.attach( vr[vr.size() -1] );
+        for(int oszlop = 0; oszlop < 8; ++oszlop)
+        {
+            vr.push_back(new Rectangle {Point{0+meret*oszlop, 0+meret*sor}, meret, meret});
+            int i = vr.size()-1;
+            if(i == 0) vr[i].set_fill_color(Color::red);
+            if(i == 9) vr[i].set_fill_color(Color::red);
+            if(i == 18) vr[i].set_fill_color(Color::red);
+            if(i == 27) vr[i].set_fill_color(Color::red);
+            if(i == 36) vr[i].set_fill_color(Color::red);
+            if(i == 45) vr[i].set_fill_color(Color::red);
+            if(i == 54) vr[i].set_fill_color(Color::red);
+            if(i == 63) vr[i].set_fill_color(Color::red);
+
+           
+            win.attach(vr[i]);
+        }
     }
-    //---------------------3---------------------
 
+    win.set_label("feladat: 3");
+    win.wait_for_button();
 
-
-    //---------------------4---------------------
+    //4.feladat
     int kep_meret200 = 200;
 
     Image pic1(Point(600,200),"badge.jpg");
@@ -58,11 +52,11 @@ int main()
     win.attach(pic3);
 
     win.wait_for_button();
-    //---------------------4---------------------
+    
 
 
 
-    //---------------------5---------------------
+    //5.feladat
     int kep_meret100=100;
     Image pic_round(Point(0,0),"badge.jpg");
     pic_round.set_mask(Point(200,0),kep_meret100,kep_meret100);
@@ -77,4 +71,6 @@ int main()
     	}
     }
     //---------------------5---------------------
+    
+
 }

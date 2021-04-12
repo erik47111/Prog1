@@ -1,21 +1,21 @@
 /*
-    g++ ch15_part2.cpp -o ch15_part2
+    g++ dh15_2.cpp -o dh15_2 -w -Wall
 */
 #include "std_lib_facilities.h"
 
-const int min_ev = 1;
-const int max_ev = 150;
+const int min_ev = 0;
+const int max_ev = 130;
 
 void ev_ellenorzese(int age)
 {
-    if (age < min_ev or age >= 150) error("Nem elfogadható az év!");
+    if (age < min_ev || age >= max_ev) error("Nem elfogadható az év kérjük ne legyen kissebb mint 0 és nagyobb mint 130!");
 }
 
 void nev_ellenorzese(string name)
 {
     for (int i = 0; i < name.length(); ++i)
     {
-        if(!isalpha(name[i])) error("Nem elfogadható a név!"); 
+        if(!isalpha(name[i])) error("Nem elfogadható a név mivel nem csak az abc elemit használja vagy kerülje a hosszú ékezetet!"); 
     }
 }
 
@@ -27,7 +27,7 @@ private:
     int ev;
 
 public:
-    Person(string kn = "Goofy", string vn = "Mickey", int eves = 63) : ker_nev(kn), vez_nev(vn), ev(eves) 
+    Person(string kn = "Goofy", string vn = "Mickey", int kor = 63) : ker_nev(kn), vez_nev(vn), ev(kor) 
     {
         ev_ellenorzese(ev);
         nev_ellenorzese(ker_nev);
@@ -55,10 +55,10 @@ istream& operator>>(istream& is, Person& p)
 
     is >> szoveg1;
     p.set_ker_nev(szoveg1);
-    for (int i = 0; i < szoveg1.size(); ++i) if (!isalpha(szoveg1[i])) error("Nem elfogadható a név!");
+    for (int i = 0; i < szoveg1.size(); ++i) if (!isalpha(szoveg1[i])) error("rossz keresztnev!");
     is >> szoveg2;
     p.set_vez_nev(szoveg2);
-    for (int i = 0; i < szoveg2.size(); ++i) if (!isalpha(szoveg2[i])) error("Nem elfogadható a név!");
+    for (int i = 0; i < szoveg2.size(); ++i) if (!isalpha(szoveg2[i])) error("rossz vezeteknev!");
     is >> szam;
     p.set_ev(szam);
     if (szam <= min_ev || szam > max_ev) error("Nem elfogadható az év!");
@@ -84,6 +84,6 @@ try{
     cerr << e.what() << endl;
     return 2;
 } catch (...){
-    cerr << "Something went wrong!" << endl;
+    cerr << "Eine problema!" << endl;
     return 3;
 }

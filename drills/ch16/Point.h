@@ -1,4 +1,4 @@
-#ifndef POINT_GUARD //védelmi cél ne lehessen töbször includeolni
+#ifndef POINT_GUARD
 #define POINT_GUARD
 
 namespace Graph_lib {
@@ -17,4 +17,4 @@ inline bool operator!=(Point a, Point b)
 
 }
 
-#endif //az in defhez tartotik
+#endif
